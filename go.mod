@@ -1,4 +1,4 @@
-module go-expo-notification
+module github.com/montovaneli/go-expo-notification
 
 go 1.22.1
 
