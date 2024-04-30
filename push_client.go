@@ -47,10 +47,10 @@ type ClientConfig struct {
 // See full API docs at https://docs.getexponent.com/versions/v13.0.0/guides/push-notifications.html#http-2-api
 func NewPushClient(config *ClientConfig) *PushClient {
 	c := new(PushClient)
-	var httpClient fastshot.ClientHttpMethods
 	host := DefaultHost
 	apiURL := DefaultBaseAPIURL
 	accessToken := ""
+	httpClient := DefaultHTTPClient(host, accessToken)
 	if config != nil {
 		if config.Host != "" {
 			host = config.Host
@@ -63,8 +63,6 @@ func NewPushClient(config *ClientConfig) *PushClient {
 		}
 		if config.HTTPClient != nil {
 			httpClient = config.HTTPClient
-		} else {
-			httpClient = DefaultHTTPClient(host, accessToken)
 		}
 	}
 	c.host = host
